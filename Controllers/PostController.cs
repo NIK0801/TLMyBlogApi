@@ -4,7 +4,7 @@ using MyBlogApi.Services;
 using MyBlogApi.Domain;
 using MyBlogApi.Extensions;
 using MyBlogApi.Filter;
-using Posts = MyBlogApi.Domain.Posts;
+using Post = MyBlogApi.Domain.Post;
 
 namespace MyBlogApi.Controllers
 {
@@ -12,9 +12,9 @@ namespace MyBlogApi.Controllers
     [Route("rest/{controller}")]
     [AllException]
     public class PostController : ControllerBase
-    {
-        private readonly IService<Posts, PostsDto> _postsService;
-        public PostController(IService<Posts, PostsDto> service)
+    {s
+        private readonly IService<Post, PostDto> _postsService;
+        public PostController(IService<Post, PostDto> service)
         {
             _postsService = service;
         }
@@ -36,7 +36,7 @@ namespace MyBlogApi.Controllers
         [HttpPost]
         [Route("create")]
 
-        public IActionResult Create([FromBody] PostsDto postsDto)
+        public IActionResult Create([FromBody] PostDto postsDto)
         {
             return Ok(_postsService.Create(postsDto));
         }
@@ -51,7 +51,7 @@ namespace MyBlogApi.Controllers
 
         [HttpPost]
         [Route("update")]
-        public IActionResult Update([FromBody] PostsDto postsDto)
+        public IActionResult Update([FromBody] PostDto postsDto)
         {
 
             return Ok(_postsService.Update(postsDto));

@@ -4,7 +4,7 @@ using MyBlogApi.Services;
 using MyBlogApi.Domain;
 using MyBlogApi.Extensions;
 using MyBlogApi.Filter;
-using Tags = MyBlogApi.Domain.Tags;
+using Tag = MyBlogApi.Domain.Tag;
 
 namespace MyBlogApi.Controllers
 {
@@ -13,8 +13,8 @@ namespace MyBlogApi.Controllers
     [AllException]
     public class TagController : ControllerBase
     {
-        private readonly IService<Tags, TagsDto> _tagsService;
-        public TagController(IService<Tags, TagsDto> service)
+        private readonly IService<Tag, TagDto> _tagsService;
+        public TagController(IService<Tag, TagDto> service)
         {
             _tagsService = service;
         }
@@ -36,7 +36,7 @@ namespace MyBlogApi.Controllers
         [HttpPost]
         [Route("create")]
 
-        public IActionResult Create([FromBody] TagsDto tagsDto)
+        public IActionResult Create([FromBody] TagDto tagsDto)
         {
             return Ok(_tagsService.Create(tagsDto));
         }
@@ -51,9 +51,8 @@ namespace MyBlogApi.Controllers
 
         [HttpPost]
         [Route("update")]
-        public IActionResult Update([FromBody] TagsDto tagsDto)
+        public IActionResult Update([FromBody] TagDto tagsDto)
         {
-
             return Ok(_tagsService.Update(tagsDto));
         }
     }

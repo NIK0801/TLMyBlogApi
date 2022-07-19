@@ -4,7 +4,7 @@ using MyBlogApi.Services;
 using MyBlogApi.Domain;
 using MyBlogApi.Extensions;
 using MyBlogApi.Filter;
-using Categories = MyBlogApi.Domain.Categories;
+using Category = MyBlogApi.Domain.Category;
 
 namespace MyBlogApi.Controllers
 {
@@ -13,8 +13,8 @@ namespace MyBlogApi.Controllers
     [AllException]
     public class CategoryController : ControllerBase
     {
-        private readonly IService<Categories, CategoriesDto> _categoriesService;
-        public CategoryController(IService<Categories, CategoriesDto> service)
+        private readonly IService<Category, CategoryDto> _categoriesService;
+        public CategoryController(IService<Category, CategoryDto> service)
         {
             _categoriesService = service;
         }
@@ -36,7 +36,7 @@ namespace MyBlogApi.Controllers
         [HttpPost]
         [Route("create")]
 
-        public IActionResult Create([FromBody] CategoriesDto categoriesDto)
+        public IActionResult Create([FromBody] CategoryDto categoriesDto)
         {
             return Ok(_categoriesService.Create(categoriesDto));
         }
@@ -51,7 +51,7 @@ namespace MyBlogApi.Controllers
 
         [HttpPost]
         [Route("update")]
-        public IActionResult Update([FromBody] CategoriesDto categoriesDto)
+        public IActionResult Update([FromBody] CategoryDto categoriesDto)
         {
 
             return Ok(_categoriesService.Update(categoriesDto));
